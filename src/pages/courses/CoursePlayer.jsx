@@ -6,7 +6,7 @@ import Button from '../../components/ui/Button'
 import { getCourseById } from '../../data/courses'
 import { useCourseStore } from '../../store/useCourseStore'
 import { DURATION, EASE, SPRING, TAP } from '../../lib/motion'
-import { formatTime, formatSessionTimer } from '../../lib/formatTime'
+import { formatSessionTimer } from '../../lib/formatTime'
 import CircularTimer from './CircularTimer'
 import './CoursePlayer.css'
 
@@ -50,7 +50,6 @@ export default function CoursePlayer() {
   const [viewMode, setViewMode] = useState('illustration') // 'illustration' | 'photo'
 
   const pose = course ? course.poses[poseIndex] : null
-  const step = pose ? pose.steps[stepIndex] : null
   const isLastStep = pose ? stepIndex === pose.steps.length - 1 : false
   const isLastPose = course ? poseIndex === course.poses.length - 1 : false
 

@@ -4,6 +4,7 @@ import SplashScreen from './pages/SplashScreen'
 import AuthPage from './pages/auth/AuthPage'
 import OtpVerification from './pages/OtpVerification'
 import AppShell from './components/layout/AppShell'
+import ProtectedRoute from './components/layout/ProtectedRoute'
 import HomeDashboard from './pages/home/HomeDashboard'
 import CategoryIndex from './pages/store/CategoryIndex'
 import CategoryProducts from './pages/store/CategoryProducts'
@@ -73,6 +74,11 @@ export default function App() {
           <Route path="/support" element={<AnimatedPage><SupportPage /></AnimatedPage>} />
           <Route path="/meditate" element={<AnimatedPage><MeditationSession /></AnimatedPage>} />
           <Route path="/coming-soon" element={<AnimatedPage><ComingSoon /></AnimatedPage>} />
+
+          <Route element={<ProtectedRoute allowedRoles={['coach', 'admin']} />}>
+            {/* Placeholder until Phase 3 replaces this with CoachConsole */}
+            <Route path="/admin" element={<AnimatedPage><ComingSoon /></AnimatedPage>} />
+          </Route>
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

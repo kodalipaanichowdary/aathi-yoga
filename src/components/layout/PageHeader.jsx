@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import SearchField from '../ui/SearchField'
 import ProfileModal from './ProfileModal'
@@ -24,7 +23,6 @@ export default function PageHeader({
   brand = false,
   brandLabel = 'Aathi Yoga',
 }) {
-  const navigate = useNavigate()
   const currentUser = useAuthStore((state) => state.currentUser)
   const [profileModalOpen, setProfileModalOpen] = useState(false)
 

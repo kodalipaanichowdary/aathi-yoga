@@ -2,19 +2,15 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import PageHeader from '../../components/layout/PageHeader'
-import HeroBackdrop from '../../components/HeroBackdrop'
 import ScrollSection from '../../components/ui/ScrollSection'
 import PoseIllustration from '../../components/icons/PoseIllustration'
 import Button from '../../components/ui/Button'
-import { useAuthStore } from '../../store/useAuthStore'
-import { useCourseStore } from '../../store/useCourseStore'
 import { useUiStore } from '../../store/useUiStore'
-import { COURSES, getCourseById } from '../../data/courses'
+import { COURSES } from '../../data/courses'
 import { ARTICLES } from '../../data/articles'
 import { MEDITATION_SESSION } from '../../data/meditation'
-import { MEMBERSHIP_PLANS } from '../../data/membership'
 import { useInViewOnce } from '../../hooks/useInViewOnce'
-import { DURATION, EASE, HERO_ITEM, HERO_SEQUENCE, STAGGER, TAP_FIRM } from '../../lib/motion'
+import { DURATION, EASE, HERO_SEQUENCE, STAGGER, TAP_FIRM } from '../../lib/motion'
 import './LifeHome.css'
 
 const FREE_CLASSES = COURSES.slice(0, 5)
@@ -34,13 +30,7 @@ const cardHover = { duration: DURATION.hover, ease: EASE.standard }
 export default function LifeHome() {
   const navigate = useNavigate()
   const openArticle = useUiStore((state) => state.openArticle)
-  const currentUser = useAuthStore((state) => state.currentUser)
-  const progress = useCourseStore((state) => state.progress)
   const [search, setSearch] = useState('')
-
-  const inProgressEntry = Object.entries(progress).find(([, poseIndex]) => poseIndex > 0)
-  const inProgressCourse = inProgressEntry ? getCourseById(inProgressEntry[0]) : null
-  const featuredCourse = inProgressCourse ?? FREE_CLASSES[0]
 
   return (
     <div className="life-home">

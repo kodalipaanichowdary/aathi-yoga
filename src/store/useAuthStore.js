@@ -2,6 +2,17 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { INITIAL_USERS, normalizeMobile, normalizeEmail } from '../data/users'
 
+// Automatically purge legacy test session caches
+try {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    localStorage.removeItem('aathi-yoga-auth')
+    localStorage.removeItem('aathi-yoga-auth-v1')
+    localStorage.removeItem('aathi-yoga-auth-v2')
+  }
+} catch {
+  // Ignore in environments without localStorage
+}
+
 export const useAuthStore = create(
   persist(
     (set, get) => ({
@@ -105,7 +116,7 @@ export const useAuthStore = create(
       clearAllUsers() {
         set({ users: [], currentUser: null })
         try {
-          localStorage.removeItem('aathi-yoga-auth-v2')
+          localStorage.removeItem('aathi-yoga-auth-v3')
         } catch {
           // ignore in environments without localStorage
         }
@@ -119,8 +130,8 @@ export const useAuthStore = create(
       },
     }),
     {
-      name: 'aathi-yoga-auth-v2',
-      version: 2,
+      name: 'aathi-yoga-auth-v3',
+      version: 3,
       merge: (persistedState, currentState) => {
         const persistedUsers = Array.isArray(persistedState?.users) ? persistedState.users : []
         const userMap = new Map()
