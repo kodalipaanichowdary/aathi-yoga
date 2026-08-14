@@ -1,4 +1,4 @@
-# 🕉️ Aathi Yoga & Aathi Life (ஆதி யோகா)
+# 🕉️ Aathi Yoga & Aathi Life
 > **Dual-Experience Holistic Wellness Platform:** Sacred Lifestyle Store & Interactive Classical Yoga Studio
 
 [![React](https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
