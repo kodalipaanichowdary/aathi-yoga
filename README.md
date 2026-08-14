@@ -1,12 +1,15 @@
 # 🕉️ Aathi Yoga & Aathi Life
 > **Dual-Experience Holistic Wellness Platform:** Sacred Lifestyle Store & Interactive Classical Yoga Studio
 
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Website-aathi--yoga.workers.dev-059669?style=for-the-badge&logo=cloudflare&logoColor=white)](https://aathi-yoga.paanichowdary5935.workers.dev)
 [![React](https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-8.2-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.4-FF0055?style=flat-square&logo=framer&logoColor=white)](https://www.framer.com/motion/)
 [![Zustand](https://img.shields.io/badge/Zustand-5.0-4338CA?style=flat-square)](https://github.com/pmndrs/zustand)
 [![React Router](https://img.shields.io/badge/React_Router-7.11-CA4245?style=flat-square&logo=react-router&logoColor=white)](https://reactrouter.com/)
 [![License](https://img.shields.io/badge/License-MIT-emerald?style=flat-square)](LICENSE)
+
+> 🚀 **Live Production Deployment:** [https://aathi-yoga.paanichowdary5935.workers.dev](https://aathi-yoga.paanichowdary5935.workers.dev)
 
 ---
 
