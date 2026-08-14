@@ -1,0 +1,24 @@
+.cart-drawer .cart-content__title {
+  padding-right: 40px;
+}
+
+.cart-drawer__close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-brand-light);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.cart-drawer__close:hover {
+  color: var(--color-brand-dark);
+}

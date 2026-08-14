@@ -1,0 +1,67 @@
+.add-cart {
+  position: relative;
+  height: 32px;
+  margin-top: 4px;
+}
+
+.add-cart > * {
+  position: absolute;
+  inset: 0;
+}
+
+.add-cart__button {
+  width: 100%;
+  border: 1.5px solid var(--color-brand);
+  background: #fff;
+  color: var(--color-brand);
+  font-weight: 600;
+  font-size: 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--t-tap) ease, color var(--t-tap) ease;
+}
+
+.add-cart__button:hover {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.add-cart__state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--color-brand-light);
+  color: var(--color-brand-dark);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.add-cart__state--done {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.add-cart__spinner {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 2.2px solid color-mix(in srgb, var(--color-brand) 28%, transparent);
+  border-top-color: var(--color-brand);
+  display: block;
+}
+
+.add-cart__stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-cart__stepper .qty-stepper {
+  width: 100%;
+  justify-content: space-between;
+  padding: 6px 10px;
+}

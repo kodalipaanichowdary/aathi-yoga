@@ -1,0 +1,77 @@
+.floating-cart {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: calc(82px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-brand);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  pointer-events: auto;
+  transform-origin: bottom center;
+  transition: background-color var(--t-section) var(--e-in-out);
+}
+
+.floating-cart__count {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12.5px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.floating-cart__label {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.9;
+  white-space: nowrap;
+  transition: opacity var(--t-hover) ease, max-width var(--t-hover) var(--e-standard);
+  max-width: 120px;
+  overflow: hidden;
+}
+
+/* While scrolling the bar sheds its secondary label and tightens up. */
+.floating-cart--compact .floating-cart__label {
+  opacity: 0;
+  max-width: 0;
+}
+
+.floating-cart__total {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.floating-cart__cta {
+  font-size: 13px;
+  font-weight: 700;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  padding-left: 10px;
+  white-space: nowrap;
+}
+
+@media (max-width: 360px) {
+  .floating-cart__label {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .floating-cart {
+    left: 28px;
+    right: 28px;
+    padding: 12px 20px;
+  }
+}

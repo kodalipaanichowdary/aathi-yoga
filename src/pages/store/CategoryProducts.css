@@ -1,0 +1,119 @@
+.category-products {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+}
+
+.category-products__pills {
+  display: flex;
+  gap: 8px;
+  padding: 6px 16px 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+
+.category-products__pills::-webkit-scrollbar {
+  display: none;
+}
+
+.category-products__pill {
+  position: relative;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  border: 1.5px solid var(--color-border);
+  background: #fff;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: border-color var(--t-tap) ease, color var(--t-tap) ease;
+}
+
+.category-products__pill:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+/* Shared layoutId element — slides between pills instead of popping. */
+.category-products__pill-bg {
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 999px;
+  background: var(--color-brand);
+  z-index: 0;
+}
+
+.category-products__pill-label {
+  position: relative;
+  z-index: 1;
+}
+
+.category-products__pill--active {
+  border-color: var(--color-brand);
+  color: #fff;
+}
+
+.category-products__pill--active:hover {
+  color: #fff;
+}
+
+.category-products__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 4px 16px 12px;
+}
+
+.category-products__heading h2 {
+  font-size: 16px;
+}
+
+.category-products__heading span {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+}
+
+.category-products__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: stretch;
+  gap: 14px;
+  padding: 0 20px;
+}
+
+.category-products__empty {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .category-products__pills,
+  .category-products__heading {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .category-products__heading h2 {
+    font-size: 19px;
+  }
+
+  .category-products__grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 18px;
+    padding: 0 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .category-products__grid {
+    grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+    gap: 22px;
+  }
+}

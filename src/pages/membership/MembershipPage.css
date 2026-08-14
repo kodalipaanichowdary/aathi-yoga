@@ -1,0 +1,215 @@
+.membership-page {
+  position: relative;
+  padding: 20px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  isolation: isolate;
+}
+
+/*
+ * Glass needs something to refract. This wash sits behind the cards and gives
+ * the blur real colour to pick up instead of blurring flat white.
+ */
+.membership-page__wash {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 12% 6%, color-mix(in srgb, var(--color-brand) 30%, transparent) 0%, transparent 42%),
+    radial-gradient(circle at 88% 26%, rgba(242, 176, 30, 0.26) 0%, transparent 38%),
+    radial-gradient(circle at 20% 68%, color-mix(in srgb, var(--color-brand) 22%, transparent) 0%, transparent 40%),
+    radial-gradient(circle at 90% 88%, rgba(242, 176, 30, 0.2) 0%, transparent 40%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-brand) 10%, transparent) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.membership-page__header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.membership-page__header h1 {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.membership-page__header p {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+}
+
+.membership-page__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+@media (min-width: 640px) {
+  .membership-page__grid {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.plan-card {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 20px;
+  border-radius: var(--radius-lg);
+  /* Glass: translucent gradient + blurred backdrop + light top edge. */
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.62) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px) saturate(1.15);
+  -webkit-backdrop-filter: blur(16px) saturate(1.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 22px 44px -26px rgba(16, 32, 24, 0.38);
+  transition: box-shadow var(--t-hover) var(--e-standard), border-color var(--t-hover) ease;
+}
+
+.plan-card:hover {
+  border-color: color-mix(in srgb, var(--color-brand) 45%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 32px 60px -28px rgba(16, 32, 24, 0.44);
+}
+
+.plan-card--highlight {
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.68) 100%);
+  border-color: color-mix(in srgb, var(--color-brand) 55%, transparent);
+}
+
+/* Slow, low-contrast halo behind the featured plan only. */
+.plan-card__glow {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-brand) 40%, transparent);
+  animation: plan-card-glow 4.5s var(--e-in-out) infinite;
+}
+
+@keyframes plan-card-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-brand) 34%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 22px 2px color-mix(in srgb, var(--color-brand) 28%, transparent);
+  }
+}
+
+.plan-card__badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: var(--color-brand);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+}
+
+.plan-card__label {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.plan-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.plan-card__price-value {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  line-height: 1;
+}
+
+.plan-card__period {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.plan-card__features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.plan-card__features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--color-text);
+}
+
+.plan-card__features li svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--color-brand);
+}
+
+.plan-card__cta-wrap {
+  position: relative;
+  margin-top: 4px;
+}
+
+/* Soft outward pulse on the featured plan's CTA — transform + opacity only. */
+.plan-card__pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-brand);
+  opacity: 0.32;
+  pointer-events: none;
+  animation: plan-card-pulse 2.4s var(--e-in-out) infinite;
+}
+
+@keyframes plan-card-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  70%,
+  100% {
+    transform: scale(1.06);
+    opacity: 0;
+  }
+}
+
+.plan-card__cta {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .membership-page {
+    padding: 24px 28px 36px;
+    gap: 24px;
+  }
+
+  .membership-page__header h1 {
+    font-size: 25px;
+  }
+
+  .plan-card {
+    padding: 28px 24px;
+  }
+}

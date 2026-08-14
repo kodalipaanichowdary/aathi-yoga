@@ -1,0 +1,12 @@
+.confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 90;
+}
+
+.confetti__piece {
+  position: absolute;
+  border-radius: 2px;
+}

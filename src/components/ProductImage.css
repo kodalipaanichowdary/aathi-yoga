@@ -1,0 +1,35 @@
+.product-image {
+  width: 100%;
+  aspect-ratio: 1.2 / 1;
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, var(--color-brand-light) 0%, #dcebe1 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand);
+  overflow: hidden;
+  position: relative;
+}
+
+.product-image__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.product-card:hover .product-image__photo {
+  transform: scale(1.06);
+}
+
+/* Detail framing: tighter crop, cooler light, glyph pushed in close. */
+.product-image--detail {
+  background: linear-gradient(35deg, #dcebe1 0%, var(--color-brand-light) 55%, #f3f8f4 100%);
+}
+
+/* In-use framing: warmer, roomier, glyph sits smaller in the frame. */
+.product-image--inuse {
+  background: linear-gradient(205deg, #f7f2e6 0%, var(--color-brand-light) 60%, #dfece3 100%);
+}

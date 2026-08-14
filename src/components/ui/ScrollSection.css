@@ -1,0 +1,72 @@
+.scroll-section {
+  padding: 8px 20px 4px;
+}
+
+.scroll-section__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.scroll-section__header h2 {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.scroll-section__header a,
+.scroll-section__header button {
+  font-size: 13px;
+  color: var(--color-brand);
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.scroll-section__row {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-section__row::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-section__row > * {
+  flex: 0 0 215px;
+  scroll-snap-align: start;
+}
+
+/* Carousels stay horizontal on bigger screens, but the cards grow with them. */
+@media (min-width: 768px) {
+  .scroll-section {
+    padding: 10px 28px 6px;
+  }
+
+  .scroll-section__header h2 {
+    font-size: 20px;
+  }
+
+  .scroll-section__row {
+    gap: 18px;
+    scroll-snap-type: x proximity;
+  }
+
+  .scroll-section__row > * {
+    flex: 0 0 240px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .scroll-section__row > * {
+    flex: 0 0 260px;
+  }
+}

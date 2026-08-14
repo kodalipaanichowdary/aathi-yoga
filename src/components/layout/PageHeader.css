@@ -1,0 +1,101 @@
+/*
+ * The header owns its own stacking context so the search field's suggestion
+ * panel can escape whatever it is layered against.
+ *
+ * z-index 3 clears the category shelf (2), which overlaps the hero from below.
+ * While the panel is actually open it jumps above the sticky mode bar (40) too,
+ * so a panel opened after scrolling can't slide under the top chrome.
+ */
+.page-header {
+  position: relative;
+  z-index: 3;
+  padding: 16px 20px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.page-header:has(.search-field--focused) {
+  z-index: 45;
+}
+
+.page-header__top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 6px;
+  column-gap: 12px;
+}
+
+.page-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.page-header__brand-mark {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: var(--color-brand);
+  display: block;
+}
+
+.page-header__brand-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.page-header__brand-label {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.page-header__greeting {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 14.5px;
+}
+
+.page-header__avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-brand);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background-color var(--t-tap) ease;
+}
+
+.page-header__avatar:hover {
+  background: var(--color-brand-dark);
+}
+
+@media (min-width: 768px) {
+  .page-header {
+    padding: 20px 28px 4px;
+    gap: 14px;
+  }
+
+  .page-header__brand-label {
+    font-size: 18px;
+  }
+
+  .page-header__greeting {
+    font-size: 16px;
+  }
+}

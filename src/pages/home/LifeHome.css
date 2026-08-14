@@ -1,0 +1,537 @@
+.life-home {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 24px;
+}
+
+.life-home__intro {
+  display: flex;
+  flex-direction: column;
+}
+
+.life-home__hero-wrap {
+  margin-bottom: 0;
+}
+
+.life-home__hero {
+  position: relative;
+  background: var(--color-header-bg);
+  border-radius: 0 0 28px 28px;
+  padding-bottom: 20px;
+  transition: background-color var(--t-section) var(--e-in-out);
+}
+
+.life-home__hero .page-header {
+  padding: 8px 20px 0;
+  gap: 12px;
+}
+
+.life-home__hero .page-header__brand-mark,
+.life-home__hero .page-header__brand-label,
+.life-home__hero .page-header__greeting {
+  color: #fff;
+}
+
+.life-home__hero .page-header__avatar {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+.life-home__hero .page-header__avatar:hover {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.life-home__hero .search-field__box {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.life-home__hero .search-field--focused .search-field__box {
+  background: #fff;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.7),
+    0 18px 30px -16px rgba(180, 100, 20, 0.4);
+}
+
+/* Free Yoga Class Banner from user reference */
+.life-free-banner {
+  position: relative;
+  margin: 4px 20px 0;
+  background: linear-gradient(135deg, #fffdf8 0%, #fff5e6 100%);
+  border: 1px solid #f2d2a4;
+  border-radius: 20px;
+  padding: 26px 20px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 6px 20px -8px rgba(234, 158, 44, 0.2);
+  overflow: hidden;
+}
+
+.life-free-banner__mandala {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at center, rgba(234, 158, 44, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.life-free-banner h2 {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 700;
+  color: #ea9e2c;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+/* Section Container & Header */
+.life-home__section {
+  padding: 4px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.life-home__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.life-home__section-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.life-home__see-all {
+  color: #ea9e2c;
+  font-weight: 700;
+  font-size: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity var(--t-tap) ease;
+}
+
+.life-home__see-all:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* Memberships List & Cards matching reference */
+.life-home__memberships-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.life-membership-item-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid #f2e0cc;
+  border-radius: 18px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 18px -4px rgba(201, 130, 42, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: box-shadow var(--t-hover) var(--e-standard), border-color var(--t-hover) ease;
+}
+
+.life-membership-item-card:hover {
+  box-shadow: 0 10px 26px -6px rgba(201, 130, 42, 0.22);
+  border-color: #c9822a;
+}
+
+.life-membership-item-card__img-wrap {
+  width: 96px;
+  height: 96px;
+  border-radius: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #fdf5ea;
+  position: relative;
+}
+
+.life-membership-item-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.life-membership-item-card:hover .life-membership-item-card__img {
+  transform: scale(1.08);
+}
+
+.life-membership-item-card__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.life-membership-item-card__content h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.life-membership-item-card__content p {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.life-membership-item-card__divider {
+  height: 1px;
+  background: #f0e2d0;
+  margin: 3px 0;
+}
+
+.life-membership-item-card__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.life-membership-item-card__price-row strong {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.life-membership-item-card__price-row span {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+/* Articles Row & Cards */
+.life-home__articles-row {
+  padding-bottom: 6px;
+  gap: 14px;
+}
+
+.life-article-card {
+  flex: 0 0 178px;
+  background: #ffffff;
+  border: 1px solid #f2e0cc;
+  border-radius: 18px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 4px 14px -4px rgba(201, 130, 42, 0.1);
+  transition: box-shadow var(--t-hover) var(--e-standard), border-color var(--t-hover) ease;
+}
+
+.life-article-card:hover {
+  box-shadow: 0 8px 22px -6px rgba(201, 130, 42, 0.2);
+  border-color: #c9822a;
+}
+
+.life-article-card__cover {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #fff5e6 0%, #fae8ce 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.life-article-card__cover .pose-figure circle {
+  fill: #c9822a;
+}
+
+.life-article-card__cover .pose-figure path {
+  stroke: #c9822a;
+}
+
+.life-article-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.life-article-card:hover .life-article-card__img {
+  transform: scale(1.08);
+}
+
+.life-article-card h3 {
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.3;
+  min-height: 34px;
+  color: var(--color-text);
+}
+
+.life-article-card__time {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.life-article-card__open {
+  border: none;
+  background: none;
+  color: #c9822a;
+  font-weight: 700;
+  font-size: 12.5px;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.life-article-card__open:hover {
+  text-decoration: underline;
+}
+
+/* Free Classes Row & Cards */
+.life-home__class-row {
+  padding-bottom: 4px;
+  gap: 16px;
+}
+
+.life-class-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 0 0 188px;
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.07);
+  transition: box-shadow var(--t-hover) var(--e-standard), border-color var(--t-hover) ease;
+}
+
+.life-class-card:hover {
+  box-shadow: var(--shadow-lift);
+  border-color: #c9822a;
+}
+
+.life-class-card__thumb {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  background: #fdf5ea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.life-class-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.life-class-card:hover .life-class-card__img {
+  transform: scale(1.08);
+}
+
+.life-class-card__thumb .pose-figure circle {
+  fill: #c9822a;
+}
+
+.life-class-card__thumb .pose-figure path {
+  stroke: #c9822a;
+}
+
+.life-class-card h3 {
+  font-size: 14.5px;
+  line-height: 1.3;
+}
+
+.life-class-card p {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  min-height: 30px;
+}
+
+.life-class-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+}
+
+.life-class-card__badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.life-class-card__badge--beginner {
+  background: #fef5e8;
+  color: #ea9e2c;
+}
+
+.life-class-card__badge--intermediate {
+  background: #fdf3e7;
+  color: #b56c1f;
+}
+
+.life-class-card__badge--advanced {
+  background: #fdeaea;
+  color: var(--color-danger);
+}
+
+.life-class-card .btn {
+  padding: 10px;
+  font-size: 13px;
+}
+
+/* Meditation Card */
+.life-meditation-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(150deg, #fef7ed 0%, #ffffff 100%);
+  border: 1px solid #f4dfc7;
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  margin: 0 20px;
+  box-shadow: 0 4px 18px -4px rgba(234, 158, 44, 0.12);
+}
+
+.life-meditation-card__cover-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(234, 158, 44, 0.18);
+}
+
+.life-meditation-card__cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.life-meditation-card .pose-figure circle {
+  fill: #ea9e2c;
+}
+
+.life-meditation-card .pose-figure path {
+  stroke: #ea9e2c;
+}
+
+.life-meditation-card__info {
+  flex: 1 1 150px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.life-meditation-card__info strong {
+  font-size: 15.5px;
+}
+
+.life-meditation-card__info p {
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+}
+
+.life-meditation-card__info span {
+  font-size: 12px;
+  color: #ea9e2c;
+  font-weight: 700;
+}
+
+.life-meditation-card .btn {
+  width: auto;
+  flex-shrink: 0;
+  padding: 11px 20px;
+  background: #ea9e2c;
+  color: #ffffff;
+}
+
+.life-meditation-card .btn:hover {
+  background: #d88922;
+}
+
+@media (max-width: 540px) {
+  .life-meditation-card .btn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .life-home {
+    gap: 28px;
+  }
+
+  .life-home__hero {
+    padding-bottom: 28px;
+  }
+
+  .life-home__hero .page-header {
+    padding: 22px 28px 0;
+  }
+
+  .life-free-banner {
+    margin: 8px 28px 0;
+    padding: 32px 28px;
+  }
+
+  .life-free-banner h2 {
+    font-size: 32px;
+  }
+
+  .life-home__section {
+    padding: 6px 28px;
+  }
+
+  .life-home__memberships-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .life-membership-item-card {
+    padding: 18px;
+    gap: 18px;
+  }
+
+  .life-membership-item-card__img-wrap {
+    width: 104px;
+    height: 104px;
+  }
+
+  .life-class-card {
+    flex: 0 0 220px;
+  }
+
+  .life-article-card {
+    flex: 0 0 220px;
+  }
+
+  .life-meditation-card {
+    margin: 0 28px;
+    padding: 26px 28px;
+  }
+}

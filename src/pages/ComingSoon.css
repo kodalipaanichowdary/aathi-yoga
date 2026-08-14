@@ -1,0 +1,21 @@
+.coming-soon {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.coming-soon h1 {
+  font-size: 20px;
+  margin-top: 8px;
+}
+
+.coming-soon p {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  max-width: 280px;
+}

@@ -1,0 +1,136 @@
+.bottom-nav {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px));
+  z-index: 50;
+  transition: background-color var(--t-section) var(--e-in-out);
+}
+
+.bottom-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--app-width);
+}
+
+.bottom-nav__item {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 11px;
+  padding: 4px 2px;
+  transition: color var(--t-hover) ease;
+}
+
+.bottom-nav__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-nav__label {
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bottom-nav__item--active {
+  color: var(--color-brand);
+}
+
+/* Shared layoutId pip that slides between tabs. */
+.bottom-nav__indicator {
+  position: absolute;
+  top: -2px;
+  width: 20px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--color-brand);
+}
+
+.bottom-nav__brand {
+  position: relative;
+  flex: 0 0 auto;
+  margin: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-14px);
+  border-radius: 50%;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+  padding: 4px;
+}
+
+/* Slow halo behind the centre badge. */
+.bottom-nav__brand-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  opacity: 0.22;
+  pointer-events: none;
+  animation: bottom-nav-glow 4s var(--e-in-out) infinite;
+}
+
+@keyframes bottom-nav-glow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.16;
+  }
+  50% {
+    transform: scale(1.14);
+    opacity: 0.04;
+  }
+}
+
+@media (max-width: 360px) {
+  .bottom-nav {
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .bottom-nav__item {
+    padding: 3px 0;
+    gap: 2px;
+  }
+
+  .bottom-nav__item svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .bottom-nav__label {
+    font-size: 9.5px;
+  }
+
+  .bottom-nav__brand {
+    margin: 0 3px;
+  }
+}
+
+@media (min-width: 768px) {
+  .bottom-nav {
+    padding: 10px 28px calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .bottom-nav__item {
+    font-size: 12px;
+    gap: 4px;
+  }
+}

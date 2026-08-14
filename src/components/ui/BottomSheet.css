@@ -1,0 +1,42 @@
+.bottom-sheet__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 12, 10, 0.5);
+  z-index: 200;
+}
+
+.bottom-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 201;
+  height: min(75vh, calc(100% - 48px));
+  max-width: var(--app-width);
+  margin: 0 auto;
+  background: var(--color-surface);
+  border-radius: 24px 24px 0 0;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
+.bottom-sheet__handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-border);
+  margin: 10px auto 4px;
+  flex-shrink: 0;
+}
+
+.bottom-sheet__body {
+  flex: 1;
+  overflow-y: auto;
+  touch-action: pan-y;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}

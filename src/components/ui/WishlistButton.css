@@ -1,0 +1,23 @@
+.wishlist-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-text-secondary);
+  box-shadow: 0 2px 8px -3px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: color var(--t-tap) ease, background-color var(--t-tap) ease;
+}
+
+.wishlist-btn:hover {
+  color: var(--color-danger);
+  background: #fff;
+}
+
+.wishlist-btn--on {
+  color: var(--color-danger);
+}

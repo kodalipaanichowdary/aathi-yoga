@@ -1,0 +1,25 @@
+.pose-illustration {
+  display: block;
+  overflow: visible;
+  max-width: 100%;
+  height: auto;
+}
+
+.pose-figure-colored {
+  transition: all 0.3s ease;
+}
+
+.pose-angle-guide {
+  animation: fadeInGuide 0.4s ease forwards;
+}
+
+@keyframes fadeInGuide {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 0.9;
+    transform: translateY(0);
+  }
+}

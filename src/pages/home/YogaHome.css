@@ -1,0 +1,411 @@
+.yoga-home {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding-bottom: 12px;
+}
+
+.yoga-home__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.yoga-home__hero-wrap {
+  margin-bottom: 0;
+}
+
+/*
+ * Deliberately no `overflow: hidden` here — the search field's suggestion panel
+ * has to be able to drop out of the hero. The decorative layer clips itself
+ * instead (.hero-backdrop inherits this radius).
+ */
+.yoga-home__hero {
+  position: relative;
+  background: var(--color-header-bg);
+  border-radius: 0 0 28px 28px;
+  padding-bottom: 46px;
+  transition: background-color var(--t-section) var(--e-in-out);
+}
+
+.yoga-home__hero .page-header {
+  padding: 8px 20px 0;
+  gap: 14px;
+}
+
+.yoga-home__hero .page-header__brand-mark,
+.yoga-home__hero .page-header__brand-label,
+.yoga-home__hero .page-header__greeting {
+  color: #fff;
+}
+
+.yoga-home__hero .page-header__avatar {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+.yoga-home__hero .page-header__avatar:hover {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.yoga-home__hero .search-field__box {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.yoga-home__hero .search-field--focused .search-field__box {
+  background: #fff;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.7),
+    0 18px 30px -16px rgba(6, 22, 14, 0.6);
+}
+
+.yoga-home__categories-card {
+  position: relative;
+  z-index: 2;
+  margin: -34px 20px 0;
+  background: var(--color-surface);
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.1);
+  padding: 14px 0 12px;
+}
+
+.yoga-home__categories {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 0 16px;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.yoga-home__categories::-webkit-scrollbar {
+  display: none;
+}
+
+.yoga-home__category-chip {
+  flex: 0 0 68px;
+  width: 68px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: center;
+}
+
+.yoga-home__category-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--color-brand-light);
+  color: var(--color-brand-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid #ffffff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition:
+    box-shadow var(--t-hover) var(--e-standard),
+    transform var(--t-hover) var(--e-standard),
+    border-color var(--t-hover) ease;
+}
+
+.yoga-home__category-icon--all {
+  background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+  color: #fff;
+}
+
+.yoga-home__category-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.yoga-home__category-chip:hover .yoga-home__category-img {
+  transform: scale(1.12);
+}
+
+.yoga-home__category-chip:hover .yoga-home__category-icon {
+  box-shadow: 0 8px 18px -4px rgba(16, 32, 24, 0.3);
+  border-color: var(--color-brand);
+}
+
+.yoga-home__category-chip:hover .yoga-home__category-icon--all {
+  background: var(--color-brand-dark);
+}
+
+.yoga-home__category-label {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-text);
+  text-align: center;
+  height: 28px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  word-break: break-word;
+}
+
+.yoga-home__quick-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  padding: 4px 20px;
+}
+
+.yoga-home__quick-actions button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  border: none;
+  border-radius: 18px;
+  background: linear-gradient(145deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 18px 16px;
+  min-height: 105px;
+  font-size: 12.5px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow var(--t-hover) var(--e-standard), transform var(--t-hover) var(--e-standard);
+}
+
+.yoga-home__quick-actions button:hover {
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-2px);
+}
+
+/* Photo tint instead of a flat colour. Text sits at the top-left of the
+   button, so the gradient is darkest there and lightens toward the bottom —
+   just enough to keep the title readable without burying the photo under it.
+   .yoga-home__quick-actions button also matches these two buttons and sets
+   the `background` shorthand, which beats a bare `.yoga-home__quick-shop`
+   background-image override on specificity alone regardless of source order
+   — qualifying with the parent class keeps this rule ahead of it. */
+.yoga-home__quick-actions .yoga-home__quick-shop {
+  background-image: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-brand-dark) 68%, transparent) 0%,
+      color-mix(in srgb, var(--color-brand) 32%, transparent) 55%,
+      color-mix(in srgb, var(--color-brand) 12%, transparent) 100%
+    ),
+    url('/assets/backgrounds/shop-the-store.jpg');
+  background-position: center 68%;
+}
+
+.yoga-home__quick-actions .yoga-home__quick-courses {
+  background-image: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-brand-dark) 68%, transparent) 0%,
+      color-mix(in srgb, var(--color-brand) 32%, transparent) 55%,
+      color-mix(in srgb, var(--color-brand) 12%, transparent) 100%
+    ),
+    url('/assets/backgrounds/yoga-courses.jpg');
+  background-position: center 22%;
+}
+
+.yoga-home__quick-title {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.yoga-home__coaching-lead {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin: -6px 0 14px;
+}
+
+.yoga-home__promo-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+
+.yoga-home__promo-row::-webkit-scrollbar {
+  display: none;
+}
+
+.yoga-home__promo-card {
+  flex: 0 0 180px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  background: var(--color-surface);
+  padding: 14px;
+  cursor: pointer;
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  transition: box-shadow var(--t-hover) var(--e-standard), border-color var(--t-hover) ease;
+}
+
+.yoga-home__promo-card strong {
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.yoga-home__promo-card:hover {
+  box-shadow: var(--shadow-lift);
+  border-color: transparent;
+}
+
+.yoga-home__promo-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--color-brand-light);
+  color: var(--color-brand-dark);
+  font-weight: 600;
+  font-size: 10.5px;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.yoga-home__support-banner {
+  width: calc(100% - 40px);
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  text-align: left;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-brand-light);
+  padding: 16px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--color-text);
+  transition: box-shadow var(--t-hover) var(--e-standard);
+}
+
+.yoga-home__support-banner:hover {
+  box-shadow: var(--shadow-soft);
+}
+
+.yoga-home__support-cta {
+  font-weight: 700;
+  color: var(--color-brand-dark);
+}
+
+/* ---- Tablet: roomier hero, wider shelf, two-up promos ---- */
+@media (min-width: 768px) {
+  .yoga-home {
+    gap: 28px;
+  }
+
+  .yoga-home__intro {
+    gap: 26px;
+  }
+
+  .yoga-home__hero {
+    padding-bottom: 58px;
+  }
+
+  .yoga-home__hero .page-header {
+    padding: 24px 28px 0;
+  }
+
+  .yoga-home__categories-card {
+    margin: -40px 28px 0;
+    padding: 20px 0;
+  }
+
+  .yoga-home__categories {
+    gap: 22px;
+    padding: 0 22px;
+  }
+
+  .yoga-home__category-chip {
+    width: 74px;
+    font-size: 12px;
+  }
+
+  .yoga-home__category-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .yoga-home__quick-actions {
+    padding: 4px 28px;
+    gap: 16px;
+  }
+
+  .yoga-home__quick-actions button {
+    padding: 20px;
+  }
+
+  .yoga-home__promo-card {
+    flex: 0 0 190px;
+  }
+
+  .yoga-home__support-banner {
+    width: calc(100% - 56px);
+    margin: 0 28px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 24px;
+  }
+}
+
+/* ---- Laptop and up: the shelf has room to lay flat, hero grows ---- */
+@media (min-width: 1024px) {
+  .yoga-home__hero {
+    padding-bottom: 66px;
+  }
+
+  .yoga-home__categories-card {
+    padding: 24px 0;
+  }
+
+  /*
+   * Laptop and up there is room for the whole rail, so it stops being a scroller
+   * and lays out as a balanced grid instead of wrapping to an orphan row.
+   */
+  .yoga-home__categories {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    justify-items: center;
+    gap: 10px;
+    overflow-x: visible;
+    padding: 0 20px;
+  }
+
+  .yoga-home__category-chip {
+    width: 100%;
+    max-width: 88px;
+  }
+
+  .yoga-home__category-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .yoga-home__promo-card {
+    flex: 0 0 220px;
+    padding: 18px;
+  }
+}

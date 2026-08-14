@@ -1,0 +1,153 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+
+.auth-form__back {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 4px;
+  margin: -4px 0 -8px -4px;
+  cursor: pointer;
+  color: var(--color-text);
+  display: inline-flex;
+}
+
+.auth-form__eyebrow {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: -8px;
+}
+
+.auth-form__tagline {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  margin-top: -6px;
+}
+
+.auth-form__title {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--color-border);
+  text-underline-offset: 6px;
+}
+
+.auth-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.auth-form__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-form__divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.auth-form__divider::before,
+.auth-form__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.auth-form__google {
+  gap: 10px;
+}
+
+.auth-form__switch {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.auth-form__switch button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-brand);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.auth-form__terms {
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.auth-form__terms a {
+  color: var(--color-brand);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-form__terms a:hover {
+  text-decoration: underline;
+}
+
+.auth-form__status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md, 10px);
+  font-size: 13px;
+  line-height: 1.4;
+  margin-top: 4px;
+  animation: fadeIn 0.2s ease;
+}
+
+.auth-form__status-banner--success {
+  background: #edf7ed;
+  color: #1e4620;
+  border: 1px solid #c8e6c9;
+}
+
+.auth-form__status-banner--notice {
+  background: #fdf6ec;
+  color: #794a00;
+  border: 1px solid #faeccb;
+}
+
+.auth-form__banner-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-brand, #3d5e2a);
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 12.5px;
+  text-decoration: underline;
+}
+
+.auth-form__banner-btn:hover {
+  opacity: 0.85;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

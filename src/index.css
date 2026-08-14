@@ -1,0 +1,167 @@
+:root {
+  /* Default Yoga Brand Palette (Rich Forest/Olive Green) */
+  --color-yoga: #486a38;
+  --color-yoga-dark: #375327;
+  --color-yoga-light: #edf3ea;
+
+  /* Life Brand Palette (Polished warm honey/amber tone, refined & not too bright) */
+  --color-life: #c9822a;
+  --color-life-dark: #ad6d1c;
+  --color-life-light: #fdf5ea;
+
+  /* Active mode tokens (default Yoga mode) */
+  --color-brand: var(--color-yoga);
+  --color-brand-dark: var(--color-yoga-dark);
+  --color-brand-light: var(--color-yoga-light);
+  --color-header-bg: var(--color-yoga-dark);
+
+  --color-page-dark: #101210;
+  --color-page-dark-2: #050605;
+
+  /* Secondary accent */
+  --color-accent: #c48238;
+  --color-accent-light: #fbf1e4;
+
+  /* Pure clean white background for ALL modes */
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-text: #1c1e1c;
+  --color-text-secondary: #5e6660;
+  --color-text-muted: #8e9990;
+  --color-border: #e6eae7;
+  --color-danger: #c04444;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  --shadow-card:
+    0 20px 45px -20px rgba(0, 0, 0, 0.28), 0 8px 16px -8px rgba(0, 0, 0, 0.18);
+  --shadow-soft: 0 6px 18px -6px rgba(0, 0, 0, 0.1);
+  --shadow-lift: 0 20px 38px -16px rgba(16, 32, 24, 0.22), 0 6px 14px -8px rgba(16, 32, 24, 0.14);
+
+  /*
+   * CSS half of the shared motion system in src/lib/motion.js. Anything that
+   * animates through a CSS transition instead of Framer Motion pulls its
+   * duration and easing from these — same rhythm, one source of truth.
+   */
+  --t-tap: 150ms;
+  --t-hover: 220ms;
+  --t-sheet: 400ms;
+  --t-section: 600ms;
+  --e-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --e-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --e-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+
+  /*
+   * Width of the app column. Every layer that has to line up with it — content,
+   * the top toggle bar, the floating cart/chat layer, bottom sheets, the bottom
+   * nav — reads this same variable, so widening a breakpoint can't desync them.
+   */
+  --app-width: 100%;
+  --page-backdrop: var(--color-bg);
+
+  --font-heading: 'Baloo 2', 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --font-body:
+    'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  font: 16px/150% var(--font-body);
+  color-scheme: light;
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+ * AATHI LIFE mode: Polished amber/honey header & brand accents, pure white background.
+ */
+[data-mode='life'] {
+  --color-brand: var(--color-life);
+  --color-brand-dark: var(--color-life-dark);
+  --color-brand-light: var(--color-life-light);
+  --color-header-bg: var(--color-life);
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-border: #f2e9dc;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --app-width: 860px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --app-width: 1100px;
+    --page-backdrop: linear-gradient(180deg, #f1f5f2 0%, #e8eeea 100%);
+  }
+
+  [data-mode='life'] {
+    --page-backdrop: linear-gradient(180deg, #f7f3ec 0%, #ede7dc 100%);
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --app-width: 1240px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-body);
+  -webkit-tap-highlight-color: transparent;
+}
+
+input {
+  font-family: var(--font-body);
+}
+
+a {
+  color: var(--color-brand);
+}
+
+/*
+ * Accessibility backstop. Framer Motion components check useReducedMotion() and
+ * opt out in JS; this covers everything driven by CSS transitions and keyframes,
+ * including the decorative hero/FAB loops.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

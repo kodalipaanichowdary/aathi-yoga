@@ -1,0 +1,14 @@
+give me all note made based text of all the things as i specified the way thngs and details in a detailed descriptive manner 1.open with logo as website refreshes and need to have smooth animation of showing login page and signup pages based on selection do here the details have to be a small json format in backend to save and remember and recollect based on it no other database storage or access id required for such small data 
+
+2.as products and selling tages and neat UI exprensce welcoming and UI should make experince a real weboste an a hovering effect as cursor moves on products a little pop effect and price too 
+
+3.basic CRUD operation of items selected and adding into cart and removing it should have price calculation in total and its actual process of removing them
+
+4. within the landing page having a slide section as it switches the whole setup and ui changes froma e-commerce selling product website to a classic yoga tutor website by guiding exercises having options for beginners and advanced
+
+5. once the user select beginer course list out mini courses with time stamp and as it starts having a timer counting and can have option to pause in between in between to complete with a start options and as he completes tell to move to next step another button
+
+6. as scrolls selling multiple sections comes across where it shows the user to have member ship showing personal one-one clasess and dirtry plans which helps as basic chat bot to resolve queries of user and if user want more call option at the end which is a support
+
+
+7. as user selects yoga beginner and runs the class see the timer and yoga poses to move eith guidings steps and instructig each with options to see little details as i mentioned so now give me as it is u understand and give me a clean the way i want describe to me whole thing back

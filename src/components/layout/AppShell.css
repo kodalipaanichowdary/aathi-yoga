@@ -1,0 +1,51 @@
+.app-shell {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--page-backdrop);
+  /* Mode switches fade the ambient background rather than cutting to it. */
+  transition: background-color var(--t-section) var(--e-in-out);
+}
+
+.app-shell__content {
+  flex: 1;
+  padding-bottom: 12px;
+  max-width: var(--app-width);
+  width: 100%;
+  margin: 0 auto;
+  background: var(--color-bg);
+  transition: background-color var(--t-section) var(--e-in-out);
+}
+
+.app-shell__content--player {
+  padding-bottom: 0;
+  background: #f5efeb;
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+ * Shares the exact same centered column as .app-shell__content, so
+ * fixed-position floating UI (chat FAB, mini-cart bar) stays aligned
+ * with the app column instead of the raw viewport edge on wide screens.
+ */
+.app-shell__floating-layer {
+  position: fixed;
+  inset: 0;
+  max-width: var(--app-width);
+  margin: 0 auto;
+  pointer-events: none;
+  z-index: 55;
+}
+
+/*
+ * Laptop and up: the column stops being a phone-shaped strip floating in empty
+ * white and becomes a deliberate sheet sitting on a soft backdrop.
+ */
+@media (min-width: 1024px) {
+  .app-shell__content {
+    box-shadow:
+      0 0 0 1px rgba(20, 40, 30, 0.05),
+      0 34px 90px -46px rgba(16, 32, 24, 0.32);
+  }
+}

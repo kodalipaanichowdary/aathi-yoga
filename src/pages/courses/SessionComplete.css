@@ -1,0 +1,97 @@
+.session-complete {
+  min-height: 70svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px 40px;
+}
+
+.session-complete__card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 36px 24px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.session-complete__icon {
+  margin-bottom: 4px;
+}
+
+.session-complete__card h1 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.session-complete__subtitle {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+.session-complete__stats {
+  display: flex;
+  gap: 14px;
+  width: 100%;
+  margin: 6px 0 22px;
+}
+
+.session-complete__stat {
+  flex: 1;
+  min-width: 0;
+  background: var(--color-brand-light);
+  border-radius: var(--radius-md);
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.session-complete__stat-value {
+  font-family: var(--font-heading);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+}
+
+.session-complete__stat-label {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.session-complete__card .btn {
+  width: 100%;
+}
+
+.session-complete__actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.session-complete__share {
+  gap: 8px;
+}
+
+.session-complete__continue {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.session-complete__continue-prompt {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}

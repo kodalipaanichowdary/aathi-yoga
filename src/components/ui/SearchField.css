@@ -1,0 +1,165 @@
+.search-field {
+  position: relative;
+  z-index: 5;
+}
+
+.search-field__box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-brand-light);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  color: var(--color-text-secondary);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: box-shadow var(--t-hover) var(--e-standard), background-color var(--t-hover) ease;
+  overflow: hidden;
+}
+
+.search-field--focused .search-field__box {
+  background: #fff;
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--color-brand) 34%, transparent),
+    0 16px 28px -16px rgba(16, 32, 24, 0.45);
+}
+
+.search-field__icon {
+  flex-shrink: 0;
+  transition: color var(--t-hover) ease;
+}
+
+.search-field--focused .search-field__icon {
+  color: var(--color-brand);
+}
+
+.search-field__input-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.search-field__input {
+  width: 100%;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--color-text);
+  padding: 0;
+}
+
+/* Rotating placeholder overlay — sits behind the caret, never intercepts taps. */
+.search-field__prompt {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  overflow: hidden;
+}
+
+.search-field__clear {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.07);
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+/*
+ * Soft caret glow. Pure opacity fade on a pre-composited radial gradient, so
+ * focusing the field doesn't cost a paint on the input itself.
+ */
+.search-field__glow {
+  position: absolute;
+  left: 34px;
+  top: 50%;
+  width: 120px;
+  height: 120px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-brand) 20%, transparent) 0%,
+    transparent 68%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-hover) var(--e-standard);
+}
+
+.search-field--focused .search-field__glow {
+  opacity: 1;
+}
+
+.search-field__panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10;
+  transform-origin: top center;
+}
+
+.search-field__group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.search-field__group-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.search-field__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.search-field__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  color: var(--color-text);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color var(--t-tap) ease, color var(--t-tap) ease, background-color var(--t-tap) ease;
+}
+
+.search-field__chip:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand-dark);
+  background: var(--color-brand-light);
+}
+
+.search-field__chip--recent {
+  color: var(--color-text-secondary);
+}

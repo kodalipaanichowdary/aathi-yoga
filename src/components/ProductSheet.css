@@ -1,0 +1,46 @@
+.product-sheet .product-detail__hero {
+  padding-top: 26px;
+}
+
+.product-sheet__action-bar {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: 14px 20px calc(14px + env(safe-area-inset-bottom, 0px));
+  margin-top: auto;
+  /* Lifts the footer above the scrolling body so content slides under it. */
+  box-shadow: 0 -12px 24px -18px rgba(16, 32, 24, 0.5);
+}
+
+.product-sheet__add,
+.product-sheet__view-cart {
+  flex: 1;
+}
+
+/* Fixed height so the label -> spinner -> checkmark swap never resizes the CTA. */
+.product-sheet__add-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 22px;
+}
+
+.product-sheet__spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2.4px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .product-sheet__action-bar {
+    padding: 16px 28px calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+}

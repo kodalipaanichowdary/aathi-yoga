@@ -1,0 +1,83 @@
+.meditation-session {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 24px 40px;
+  gap: 18px;
+}
+
+.meditation-session__back {
+  align-self: flex-start;
+  border: none;
+  background: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.meditation-session__title {
+  font-size: 20px;
+  margin-top: 8px;
+}
+
+.meditation-session__tagline {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  max-width: 280px;
+  margin-top: -8px;
+}
+
+.meditation-session .circular-timer__progress {
+  stroke: var(--color-brand);
+}
+
+.meditation-session__controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.meditation-session__controls .btn {
+  width: auto;
+  padding: 12px 26px;
+}
+
+.meditation-session__controls .btn--primary {
+  background: var(--color-brand);
+}
+
+.meditation-session__controls .btn--primary:hover {
+  background: var(--color-brand-dark);
+}
+
+.meditation-session__complete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.meditation-session__complete h1 {
+  font-size: 20px;
+  margin-top: 6px;
+}
+
+.meditation-session__complete p {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  max-width: 280px;
+}
+
+.meditation-session__complete-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.meditation-session__complete-actions .btn {
+  width: auto;
+  padding: 12px 20px;
+}

@@ -1,0 +1,38 @@
+/*
+ * Clears the whole bottom stack — nav (0-64), mini-cart bar (82-124) and chat
+ * FAB (146-198) — so a confirmation never lands on top of, or underneath, the
+ * chrome it is confirming. Centred on the app column, not the viewport.
+ */
+.toast-region {
+  position: fixed;
+  bottom: calc(208px + env(safe-area-inset-bottom, 0px));
+  left: 0;
+  right: 0;
+  max-width: var(--app-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1000;
+  padding: 0 16px;
+}
+
+.toast {
+  max-width: min(92vw, 420px);
+  background: var(--color-text);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.toast--error {
+  background: var(--color-danger);
+}
+
+.toast--success {
+  background: var(--color-brand-dark);
+}

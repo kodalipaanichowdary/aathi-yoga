@@ -1,0 +1,356 @@
+/* Course Player Screen - Zen Minimal Warm Theme */
+.course-player-screen {
+  min-height: 100vh;
+  background: #f5efeb;
+  color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0 0;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Top Header */
+.course-player-top {
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 20px 8px;
+}
+
+.course-player-top__back {
+  border: none;
+  background: transparent;
+  color: #1c1c1c;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color var(--t-tap) ease, transform var(--t-tap) ease;
+}
+
+.course-player-top__back:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.course-player-top__title {
+  font-family: var(--font-heading), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: #222222;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.2px;
+}
+
+.course-player-top__view-toggle {
+  border: 1.5px solid rgba(85, 115, 56, 0.35);
+  background: rgba(85, 115, 56, 0.1);
+  color: #4a6830;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all var(--t-tap) ease;
+}
+
+.course-player-top__view-toggle:hover {
+  background: #4a6830;
+  color: #ffffff;
+  border-color: #4a6830;
+}
+
+/* Prominent Green Countdown Timer */
+.course-player-timer-readout {
+  text-align: center;
+  margin: 2px 0 10px;
+}
+
+.course-player-timer-readout span {
+  font-family: var(--font-heading), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 38px;
+  font-weight: 800;
+  color: #557338;
+  letter-spacing: 1.5px;
+  display: inline-block;
+}
+
+/* Center Stage with Circular Timer & Illustration / Photo */
+.course-player-stage-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 420px;
+  padding: 0 16px;
+  position: relative;
+}
+
+.course-player-figure-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.course-player-photo-wrap {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border: 3px solid #ffffff;
+}
+
+.course-player-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Hold Position & Duration Cues */
+.course-player-hold-label {
+  text-align: center;
+  margin-top: 14px;
+}
+
+.course-player-hold-label h3 {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 3px;
+  letter-spacing: 0.1px;
+}
+
+.course-player-hold-duration {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #5a5a5a;
+  letter-spacing: 0.5px;
+}
+
+/* Transport Controls: Previous, Play/Pause, Next */
+.course-player-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin: 16px 0 20px;
+}
+
+.course-player-ctrl-btn {
+  border: none;
+  background: transparent;
+  color: #2b2b2b;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all var(--t-tap) ease;
+}
+
+.course-player-ctrl-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.06);
+  color: #557338;
+}
+
+.course-player-ctrl-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.course-player-ctrl-btn--play {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #3c5227;
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(60, 82, 39, 0.35);
+}
+
+.course-player-ctrl-btn--play:hover:not(:disabled) {
+  background: #2f421e;
+  color: #ffffff;
+  transform: scale(1.04);
+}
+
+/* Bottom Dark Olive Green Instruction Sheet */
+.course-player-instruction-sheet {
+  width: 100%;
+  max-width: 460px;
+  background: #557338;
+  border-radius: 28px 28px 0 0;
+  padding: 22px 20px 36px;
+  color: #ffffff;
+  margin-top: auto;
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.course-player-instruction-sheet__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.course-player-instruction-sheet__title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #ffffff;
+  margin: 0;
+  font-family: var(--font-heading), sans-serif;
+}
+
+.course-player-instruction-sheet__badge {
+  background: #ffffff;
+  color: #4a6830;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Steps List */
+.course-player-instruction-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.course-player-step-item {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px 14px;
+  text-align: left;
+  cursor: pointer;
+  color: #ffffff;
+  transition: background-color var(--t-tap) ease, border-color var(--t-tap) ease, transform var(--t-tap) ease;
+}
+
+.course-player-step-item:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.course-player-step-item--active {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.course-player-step-item__top {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.course-player-step-item__label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.course-player-step-item__action {
+  font-size: 13px;
+  font-weight: 500;
+  color: #f1f8eb;
+  line-height: 1.35;
+}
+
+.course-player-step-item__detail {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.25);
+}
+
+.course-player-step-item__cue {
+  font-size: 12.5px;
+  color: #e3efdb;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.course-player-step-item__meta {
+  font-size: 11.5px;
+  color: #ffffff;
+  margin-top: 5px;
+  opacity: 0.95;
+}
+
+/* Footer Buttons */
+.course-player-instruction-footer {
+  display: flex;
+  gap: 10px;
+}
+
+.course-player-btn-restart {
+  background: transparent !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.7) !important;
+  color: #ffffff !important;
+  flex: 1;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.course-player-btn-restart:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: #ffffff !important;
+}
+
+.course-player-btn-next {
+  background: #ffffff !important;
+  color: #3c5227 !important;
+  font-weight: 700 !important;
+  border: none !important;
+  flex: 1.3;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.course-player-btn-next:hover {
+  background: #f8faf6 !important;
+  transform: translateY(-1px);
+}
+
+@media (min-width: 768px) {
+  .course-player-screen {
+    padding-top: 24px;
+  }
+
+  .course-player-timer-readout span {
+    font-size: 44px;
+  }
+
+  .course-player-instruction-sheet {
+    border-radius: 32px 32px 0 0;
+    padding: 26px 28px 40px;
+  }
+}
