@@ -216,16 +216,13 @@ function LifeClassCard({ course, index, onStart }) {
       whileHover="hover"
       whileTap={{ scale: 0.985 }}
     >
-      <motion.div
-        className="life-class-card__thumb"
-        variants={{ visible: { scale: 1, transition: cardHover }, hover: { scale: 1.05, transition: cardHover } }}
-      >
+      <div className="life-class-card__thumb">
         {course.thumbnail ? (
           <img src={course.thumbnail} alt={course.name} className="life-class-card__img" loading="lazy" />
         ) : (
           <PoseIllustration name={course.poses[0].illustration} size={56} />
         )}
-      </motion.div>
+      </div>
       <h3>{course.name}</h3>
       <p>{course.shortDesc}</p>
       <div className="life-class-card__meta">
@@ -253,6 +250,7 @@ function LifeArticleCard({ article, index, onOpen }) {
       animate={revealed ? 'visible' : 'hidden'}
       whileHover="hover"
       whileTap={TAP_FIRM}
+      onClick={onOpen}
     >
       <div className="life-article-card__cover">
         {article.image ? (

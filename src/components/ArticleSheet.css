@@ -16,10 +16,28 @@
 }
 
 .article-sheet__body {
-  padding: 30px 22px 32px;
+  padding: 24px 22px 32px;
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+.article-sheet__image-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 4px;
+  background: var(--color-brand-light);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.article-sheet__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .article-sheet__reading-time {

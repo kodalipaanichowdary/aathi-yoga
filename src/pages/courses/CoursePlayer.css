@@ -51,6 +51,12 @@
   letter-spacing: 0.2px;
 }
 
+.course-player-top__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .course-player-top__view-toggle {
   border: 1.5px solid rgba(85, 115, 56, 0.35);
   background: rgba(85, 115, 56, 0.1);
@@ -67,6 +73,24 @@
   background: #4a6830;
   color: #ffffff;
   border-color: #4a6830;
+}
+
+.course-player-top__end-btn {
+  border: 1.5px solid rgba(192, 57, 43, 0.4);
+  background: rgba(192, 57, 43, 0.1);
+  color: #c0392b;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all var(--t-tap) ease;
+}
+
+.course-player-top__end-btn:hover {
+  background: #c0392b;
+  color: #ffffff;
+  border-color: #c0392b;
 }
 
 /* Prominent Green Countdown Timer */
@@ -311,6 +335,22 @@
   background: transparent !important;
   border: 1.5px solid rgba(255, 255, 255, 0.7) !important;
   color: #ffffff !important;
+  flex: 0.9;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.course-player-btn-restart:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: #ffffff !important;
+}
+
+.course-player-btn-end {
+  background: rgba(231, 76, 60, 0.25) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.7) !important;
+  color: #ffffff !important;
   flex: 1;
   height: 44px;
   border-radius: 12px;
@@ -318,8 +358,8 @@
   font-weight: 600;
 }
 
-.course-player-btn-restart:hover {
-  background: rgba(255, 255, 255, 0.12) !important;
+.course-player-btn-end:hover {
+  background: rgba(231, 76, 60, 0.5) !important;
   border-color: #ffffff !important;
 }
 

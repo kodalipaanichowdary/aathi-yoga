@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { getChatbotAnswer, CHATBOT_FALLBACK } from '../data/chatbotRules'
+import { useCartStore } from '../store/useCartStore'
 import { DURATION, EASE, SPRING, TAP } from '../lib/motion'
 import './ChatbotFab.css'
 
@@ -70,6 +71,9 @@ export default function ChatbotFab() {
     setDraft('')
   }
 
+  const items = useCartStore((state) => state.items)
+  const hasCartItems = items.length > 0
+
   const lastAnswerIsFallback = messages.at(-1)?.text === CHATBOT_FALLBACK
   const busy = Boolean(typing || stream)
   const showSuggestions = messages.length <= 1 && !busy
@@ -81,7 +85,7 @@ export default function ChatbotFab() {
           <motion.button
             key="chat-fab"
             type="button"
-            className="chatbot-fab"
+            className={`chatbot-fab ${hasCartItems ? 'chatbot-fab--has-cart' : ''}`.trim()}
             onClick={() => setOpen(true)}
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -109,7 +113,7 @@ export default function ChatbotFab() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="chatbot-drawer"
+            className={`chatbot-drawer ${hasCartItems ? 'chatbot-drawer--has-cart' : ''}`.trim()}
             initial={{ opacity: 0, y: 40, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.98 }}

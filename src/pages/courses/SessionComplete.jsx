@@ -39,6 +39,8 @@ export default function SessionComplete() {
     }
   }
 
+  const isPartial = location.state?.partial ?? false
+
   return (
     <div className="session-complete">
       <Confetti />
@@ -58,9 +60,13 @@ export default function SessionComplete() {
           <PoseIllustration name="meditation" size={104} />
         </motion.div>
 
-        <h1>Session Complete!</h1>
+        <h1>{isPartial ? 'Progress Saved!' : 'Session Complete!'}</h1>
         <p className="session-complete__subtitle">
-          {course ? `You finished "${course.name}". Great practice today.` : 'Great work on your practice today.'}
+          {isPartial
+            ? `Your progress for "${course?.name ?? 'Yoga Practice'}" has been saved.`
+            : course
+              ? `You finished "${course.name}". Great practice today.`
+              : 'Great work on your practice today.'}
         </p>
 
         <motion.div

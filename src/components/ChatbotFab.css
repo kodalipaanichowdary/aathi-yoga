@@ -1,7 +1,7 @@
 .chatbot-fab {
   position: absolute;
   right: max(18px, env(safe-area-inset-right, 0px));
-  bottom: calc(146px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(90px + env(safe-area-inset-bottom, 0px));
   width: 52px;
   height: 52px;
   border-radius: 50%;
@@ -14,7 +14,11 @@
   cursor: pointer;
   z-index: 60;
   pointer-events: auto;
-  transition: background-color var(--t-section) var(--e-in-out);
+  transition: bottom 0.3s cubic-bezier(0.2, 0, 0, 1), background-color var(--t-section) var(--e-in-out);
+}
+
+.chatbot-fab--has-cart {
+  bottom: calc(156px + env(safe-area-inset-bottom, 0px));
 }
 
 .chatbot-fab:hover {
@@ -48,7 +52,7 @@
   position: absolute;
   right: 16px;
   left: 16px;
-  bottom: calc(82px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(90px + env(safe-area-inset-bottom, 0px));
   max-height: min(74svh, 480px);
   background: var(--color-surface);
   border-radius: var(--radius-lg);
@@ -59,6 +63,11 @@
   z-index: 62;
   pointer-events: auto;
   transform-origin: bottom right;
+  transition: bottom 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.chatbot-drawer--has-cart {
+  bottom: calc(156px + env(safe-area-inset-bottom, 0px));
 }
 
 .chatbot-drawer__header {

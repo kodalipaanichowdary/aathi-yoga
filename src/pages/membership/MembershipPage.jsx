@@ -1,11 +1,9 @@
-import { motion } from 'framer-motion'
 import Button from '../../components/ui/Button'
 import RollingNumber from '../../components/ui/RollingNumber'
 import Reveal from '../../components/ui/Reveal'
 import { useToast } from '../../components/ui/useToast'
-import { useInViewOnce } from '../../hooks/useInViewOnce'
 import { MEMBERSHIP_PLANS } from '../../data/membership'
-import { DURATION, EASE, REVEAL, STAGGER_ITEM } from '../../lib/motion'
+import { DURATION, EASE } from '../../lib/motion'
 import './MembershipPage.css'
 
 const hoverTransition = { duration: DURATION.hover, ease: EASE.standard }
@@ -65,20 +63,11 @@ export default function MembershipPage() {
   )
 }
 
-/** Benefits arrive one line at a time once the card is on screen. */
 function FeatureList({ features }) {
-  const [ref, inView] = useInViewOnce({ once: true, amount: 0.4 })
-
   return (
-    <motion.ul
-      ref={ref}
-      className="plan-card__features"
-      variants={REVEAL.stagger}
-      initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
-    >
+    <ul className="plan-card__features">
       {features.map((feature) => (
-        <motion.li key={feature} variants={STAGGER_ITEM}>
+        <li key={feature}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path
               d="M5 13l4 4L19 7"
@@ -89,8 +78,8 @@ function FeatureList({ features }) {
             />
           </svg>
           <span>{feature}</span>
-        </motion.li>
+        </li>
       ))}
-    </motion.ul>
+    </ul>
   )
 }

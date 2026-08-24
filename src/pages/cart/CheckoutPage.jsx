@@ -42,7 +42,7 @@ export default function CheckoutPage() {
       <ul className="checkout-page__items">
         {lineItems.map(({ product, qty }) => (
           <li key={product.id} className="checkout-item">
-            <ProductImage icon={product.icon} className="checkout-item__image" />
+            <ProductImage icon={product.icon} images={product.images} alt={product.name} className="checkout-item__image" />
             <div className="checkout-item__info">
               <span className="checkout-item__name">{product.name}</span>
               <span className="checkout-item__qty">Qty {qty} &times; &#8377;{product.price}</span>

@@ -101,7 +101,7 @@ export default function CartContent({ onNavigateAway, onCheckout, onBrowseProduc
                 onClick={() => handleSelectProduct(product.id)}
                 aria-label={`View ${product.name}`}
               >
-                <ProductImage icon={product.icon} className="cart-item__image" baseSize={26} />
+                <ProductImage icon={product.icon} images={product.images} alt={product.name} className="cart-item__image" baseSize={26} />
               </button>
 
               <div className="cart-item__details">

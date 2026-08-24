@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { useAuthStore } from '../../store/useAuthStore'
 import { useModeStore } from '../../store/useModeStore'
@@ -14,6 +15,10 @@ export default function AppShell() {
   const currentUser = useAuthStore((state) => state.currentUser)
   const mode = useModeStore((state) => state.mode)
   const location = useLocation()
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-mode', mode)
+  }, [mode])
 
   if (!currentUser) {
     return <Navigate to="/auth" replace />

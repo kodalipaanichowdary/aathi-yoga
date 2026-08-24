@@ -18,6 +18,11 @@ export default function ArticleSheet() {
             </svg>
           </button>
           <div className="article-sheet__body">
+            {article.image && (
+              <div className="article-sheet__image-wrap">
+                <img src={article.image} alt={article.title} className="article-sheet__image" loading="lazy" />
+              </div>
+            )}
             <span className="article-sheet__reading-time">{article.readingTime}</span>
             <h1>{article.title}</h1>
             {article.body.map((paragraph, index) => (

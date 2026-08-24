@@ -3,6 +3,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import PoseIllustration from '../../components/icons/PoseIllustration'
 import Button from '../../components/ui/Button'
+import { useToast } from '../../components/ui/useToast'
 import { getCourseById } from '../../data/courses'
 import { useCourseStore } from '../../store/useCourseStore'
 import { DURATION, EASE, SPRING, TAP } from '../../lib/motion'
@@ -33,6 +34,7 @@ function finishCourse(course, ctx) {
 export default function CoursePlayer() {
   const { courseId } = useParams()
   const navigate = useNavigate()
+  const showToast = useToast()
   const course = getCourseById(courseId)
 
   const getProgress = useCourseStore((state) => state.getProgress)
@@ -52,6 +54,27 @@ export default function CoursePlayer() {
   const pose = course ? course.poses[poseIndex] : null
   const isLastStep = pose ? stepIndex === pose.steps.length - 1 : false
   const isLastPose = course ? poseIndex === course.poses.length - 1 : false
+
+  function handleEndSession() {
+    if (!course) return
+    // Save current pose index progress
+    setProgress(course.id, poseIndex)
+
+    const completedPosesCount = poseIndex + 1
+    const elapsedSec =
+      course.poses.slice(0, poseIndex).reduce((sum, p) => sum + p.durationSec, 0) +
+      (course.poses[poseIndex].durationSec - remainingSec)
+    const elapsedMinutes = Math.max(1, Math.round(elapsedSec / 60))
+    const estimatedCalories = Math.max(5, Math.round((course.calories / course.duration) * elapsedMinutes))
+
+    completeSession(course.id, elapsedMinutes, estimatedCalories)
+    showToast(`Progress saved! ${completedPosesCount}/${course.poses.length} poses completed.`, 'success')
+
+    navigate(`/courses/${course.id}/complete`, {
+      state: { courseId: course.id, duration: elapsedMinutes, calories: estimatedCalories, partial: true },
+      replace: true,
+    })
+  }
 
   // Countdown timer tick effect
   useEffect(() => {
@@ -107,10 +130,10 @@ export default function CoursePlayer() {
         <motion.button
           type="button"
           className="course-player-top__back"
-          onClick={() => navigate('/courses')}
+          onClick={handleEndSession}
           whileTap={TAP}
           transition={SPRING.press}
-          aria-label="Back to courses"
+          aria-label="Save and exit"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M15 19l-7-7 7-7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -119,15 +142,24 @@ export default function CoursePlayer() {
 
         <h1 className="course-player-top__title">{poseHeaderTitle}</h1>
 
-        <button
-          type="button"
-          className="course-player-top__view-toggle"
-          onClick={() => setViewMode((m) => (m === 'illustration' ? 'photo' : 'illustration'))}
-          title="Toggle Illustration / Photo view"
-          aria-label="Toggle illustration and photo"
-        >
-          {viewMode === 'illustration' ? 'Photo' : 'Art'}
-        </button>
+        <div className="course-player-top__actions">
+          <button
+            type="button"
+            className="course-player-top__view-toggle"
+            onClick={() => setViewMode((m) => (m === 'illustration' ? 'photo' : 'illustration'))}
+            title="Toggle Illustration / Photo view"
+            aria-label="Toggle illustration and photo"
+          >
+            {viewMode === 'illustration' ? 'Photo' : 'Art'}
+          </button>
+          <button
+            type="button"
+            className="course-player-top__end-btn"
+            onClick={handleEndSession}
+          >
+            End
+          </button>
+        </div>
       </header>
 
       {/* Prominent Countdown Timer */}
@@ -280,13 +312,20 @@ export default function CoursePlayer() {
             className="course-player-btn-restart"
             onClick={() => setRemainingSec(pose.durationSec)}
           >
-            Restart Pose
+            Restart
+          </Button>
+          <Button
+            variant="outline"
+            className="course-player-btn-end"
+            onClick={handleEndSession}
+          >
+            End & Save
           </Button>
           <Button
             className="course-player-btn-next"
             onClick={handleNextStep}
           >
-            {isLastStep ? (isLastPose ? 'Finish Routine' : 'Next Pose →') : 'Next Step →'}
+            {isLastStep ? (isLastPose ? 'Finish' : 'Next Pose →') : 'Next Step →'}
           </Button>
         </div>
       </div>
