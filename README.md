@@ -215,7 +215,9 @@ aathi-yoga/
 │   │   ├── OtpVerification.jsx             # 4-digit simulated OTP verification
 │   │   └── SplashScreen.jsx                # Initial brand logo splash screen
 │   ├── store/                              # Zustand State Stores
+│   │   ├── bookingStateMachine.js          # Finite state machine for booking steps
 │   │   ├── useAuthStore.js                 # Authentication & JSON user store
+│   │   ├── useBookingStore.js              # Coach session & class booking store
 │   │   ├── useCartStore.js                 # Cart CRUD & total calculation
 │   │   ├── useCourseStore.js               # Practice progress & streak tracking
 │   │   ├── useModeStore.js                 # Dual-mode (life / yoga) state
@@ -242,7 +244,7 @@ aathi-yoga/
 
 1. **Clone & Navigate:**
    ```bash
-   git clone https://github.com/your-username/aathi-yoga.git
+   git clone https://github.com/kodalipaanichowdary/aathi-yoga.git
    cd aathi-yoga
    ```
 
