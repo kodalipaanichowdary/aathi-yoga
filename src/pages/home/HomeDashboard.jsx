@@ -14,22 +14,23 @@ export default function HomeDashboard() {
   const mode = useModeStore((state) => state.mode)
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence mode="sync" initial={false}>
       <motion.div
         key={mode}
-        initial={{ opacity: 0, y: 16, scale: 0.99 }}
+        initial={{ opacity: 0, y: 6, scale: 0.995 }}
         animate={{
           opacity: 1,
           y: 0,
           scale: 1,
-          transition: { duration: DURATION.section, ease: EASE.emphasized },
+          transition: { duration: 0.18, ease: EASE.emphasized },
         }}
         exit={{
           opacity: 0,
-          y: -12,
-          scale: 0.99,
-          transition: { duration: DURATION.hover, ease: EASE.standard },
+          y: -6,
+          scale: 0.995,
+          transition: { duration: 0.12, ease: EASE.standard },
         }}
+        style={{ willChange: 'opacity, transform', transform: 'translateZ(0)' }}
       >
         {mode === 'life' ? <LifeHome /> : <YogaHome />}
       </motion.div>

@@ -1,6 +1,7 @@
+import { useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useModeStore } from '../../store/useModeStore'
-import { SPRING, TAP } from '../../lib/motion'
+import { TAP } from '../../lib/motion'
 import './TopPillToggle.css'
 
 const MODES = [
@@ -8,9 +9,20 @@ const MODES = [
   { id: 'life', label: 'AATHI LIFE' },
 ]
 
+const FAST_SPRING = { type: 'spring', stiffness: 520, damping: 30 }
+
 export default function TopPillToggle() {
   const mode = useModeStore((state) => state.mode)
   const setMode = useModeStore((state) => state.setMode)
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  function handleSelectMode(id) {
+    setMode(id)
+    if (location.pathname !== '/home') {
+      navigate('/home')
+    }
+  }
 
   return (
     <div className="top-pill-toggle-wrapper">
@@ -24,14 +36,14 @@ export default function TopPillToggle() {
               role="tab"
               aria-selected={active}
               className={`top-pill-toggle__pill ${active ? 'top-pill-toggle__pill--active' : ''}`.trim()}
-              onClick={() => setMode(option.id)}
+              onClick={() => handleSelectMode(option.id)}
               whileTap={TAP}
             >
               {active && (
                 <motion.span
                   layoutId="top-pill-toggle-active"
                   className="top-pill-toggle__active-bg"
-                  transition={SPRING.indicator}
+                  transition={FAST_SPRING}
                 />
               )}
               <span className="top-pill-toggle__label">{option.label}</span>
