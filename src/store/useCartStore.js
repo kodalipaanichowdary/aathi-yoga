@@ -32,7 +32,7 @@ export const useCartStore = create(
       decrementItem(id) {
         set((state) => ({
           items: state.items
-            .map((item) => (item.id === id ? { ...item, qty: Math.max(1, item.qty - 1) } : item))
+            .map((item) => (item.id === id ? { ...item, qty: item.qty - 1 } : item))
             .filter((item) => item.qty > 0),
         }))
       },

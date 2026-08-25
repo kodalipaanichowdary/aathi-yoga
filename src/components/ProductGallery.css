@@ -8,7 +8,10 @@
 
 .product-gallery__frame {
   position: relative;
-  width: min(78%, 320px);
+  width: 100%;
+  max-width: 320px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 .product-gallery__slide {
@@ -36,37 +39,41 @@
   padding: 4px 10px;
   border-radius: 999px;
   pointer-events: none;
+  z-index: 4;
 }
 
 .product-gallery__arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.94);
-  color: var(--color-text);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.92);
+  color: #1c1e1c;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: var(--shadow-soft);
-  transition: color var(--t-tap) ease, background-color var(--t-tap) ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  z-index: 5;
+  transition: transform var(--t-tap) ease, background-color var(--t-tap) ease, color var(--t-tap) ease;
 }
 
 .product-gallery__arrow:hover {
-  background: var(--color-brand);
-  color: #fff;
+  background: #ffffff;
+  color: var(--color-brand);
+  transform: translateY(-50%) scale(1.08);
 }
 
 .product-gallery__arrow--prev {
-  left: -14px;
+  left: 8px;
 }
 
 .product-gallery__arrow--next {
-  right: -14px;
+  right: 8px;
 }
 
 .product-gallery__dots {

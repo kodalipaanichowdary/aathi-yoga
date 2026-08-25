@@ -2,13 +2,13 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { DURATION, EASE, SPRING } from '../../lib/motion'
 import './QtyStepper.css'
 
-export default function QtyStepper({ qty, onIncrement, onDecrement, min = 1 }) {
+export default function QtyStepper({ qty, onIncrement, onDecrement, min = 0 }) {
   return (
     <div className="qty-stepper">
       <motion.button
         type="button"
         onClick={onDecrement}
-        disabled={qty <= min}
+        disabled={min !== undefined && qty <= min}
         whileTap={{ scale: 0.85 }}
         transition={SPRING.press}
         aria-label="Decrease quantity"

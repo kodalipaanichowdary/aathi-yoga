@@ -64,6 +64,7 @@ function ProductSheetContent({ product, onClose }) {
           <>
             <QtyStepper
               qty={cartLine.qty}
+              min={0}
               onIncrement={() => incrementItem(product.id)}
               onDecrement={() => decrementItem(product.id)}
             />
@@ -75,6 +76,7 @@ function ProductSheetContent({ product, onClose }) {
           <>
             <QtyStepper
               qty={qty}
+              min={1}
               onIncrement={() => setQty((current) => current + 1)}
               onDecrement={() => setQty((current) => Math.max(1, current - 1))}
             />
