@@ -9,7 +9,7 @@
 [![React Router](https://img.shields.io/badge/React_Router-7.11-CA4245?style=flat-square&logo=react-router&logoColor=white)](https://reactrouter.com/)
 [![License](https://img.shields.io/badge/License-MIT-emerald?style=flat-square)](LICENSE)
 
-> 🚀 **Live Production Deployment:** [https://aathi-yoga.paanichowdary5935.workers.dev](https://aathi-yoga.paanichowdary5935.workers.dev)
+> 🚀 **Live Production Deployment:** [https://aathi-yoga.paanichowdary5935.workers.dev](https://aathi-yoga.projectas.workers.dev)
 
 ---
 
