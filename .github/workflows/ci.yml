@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main, master]
 
+permissions:
+  contents: write
+
 jobs:
   validate:
     name: Lint, Test & Build Validation
@@ -28,7 +31,15 @@ jobs:
         run: npm run lint
 
       - name: Run Vitest Unit Tests
-        run: npm run test
+        run: |
+          npm run test > test-output.txt 2>&1 || {
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add test-output.txt
+            git commit -m "ci: dump test failure logs [skip ci]"
+            git push
+            exit 1
+          }
 
       - name: Run Production Build
         run: npm run build
