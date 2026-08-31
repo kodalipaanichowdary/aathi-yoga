@@ -111,7 +111,21 @@ export const useAuthStore = create(
       async verifyUserPassword(user, password) {
         if (!user) return false
         if (!user.passwordHash) {
-          console.warn(`User ${user.name} is a legacy account without a password.`)
+          console.warn(`User ${user.name} is a legacy account without a password. Auto-upgrading with entered password.`)
+          
+          try {
+            const passwordHash = await hashPassword(password)
+            
+            // Update the user record in the state store (persists to local storage)
+            set((state) => ({
+              users: state.users.map((u) =>
+                u.id === user.id ? { ...u, passwordHash } : u
+              ),
+            }))
+          } catch (err) {
+            console.error('Failed to hash password for legacy account upgrade:', err)
+          }
+          
           return true
         }
         return verifyPassword(password, user.passwordHash)
