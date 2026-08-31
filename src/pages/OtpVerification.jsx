@@ -17,7 +17,7 @@ export default function OtpVerification() {
   const findUserByMobile = useAuthStore((state) => state.findUserByMobile)
   const setCurrentUser = useAuthStore((state) => state.setCurrentUser)
 
-  const { mode, mobile, name, email, userName } = location.state ?? {}
+  const { mode, mobile, name, email, userName, password } = location.state ?? {}
   const displayName = userName || name || ''
 
   const [code, setCode] = useState('')
@@ -58,7 +58,7 @@ export default function OtpVerification() {
     navigate('/auth', { state: { mode, mobile, name, email } })
   }
 
-  function handleVerify(event) {
+  async function handleVerify(event) {
     event.preventDefault()
     if (code.length < 6) {
       setError('Enter the 6-digit code.')
@@ -83,15 +83,11 @@ export default function OtpVerification() {
     try {
       if (mode === 'signup') {
         const existing = findUserByMobile(mobile)
-        user = existing ?? registerUser({ name, mobile, email })
+        user = existing ?? (await registerUser({ name, mobile, email }, password))
       } else {
         user = findUserByMobile(mobile)
         if (!user) {
-          user = registerUser({
-            name: displayName || 'Yoga Member',
-            mobile,
-            email: email || `${mobile}@aathiyoga.com`,
-          })
+          throw new Error('Account not found. Please sign up first.')
         }
       }
     } catch (err) {

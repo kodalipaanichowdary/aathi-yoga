@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { createEncryptedStorage } from '../lib/crypto'
 
 const DELIVERY_CHARGE = 100
 const TAX_RATE = 0.05
@@ -51,6 +52,7 @@ export const useCartStore = create(
     }),
     {
       name: 'aathi-yoga-cart',
+      storage: createEncryptedStorage('aathi-yoga-cart'),
       partialize: (state) => ({ items: state.items }),
     },
   ),

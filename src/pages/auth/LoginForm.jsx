@@ -3,17 +3,20 @@ import { useNavigate } from 'react-router-dom'
 import Logo from '../../components/Logo'
 import Button from '../../components/ui/Button'
 import PhoneField from '../../components/ui/PhoneField'
+import TextField from '../../components/ui/TextField'
 import GoogleIcon from '../../components/GoogleIcon'
 import { useToast } from '../../components/ui/useToast'
 import { useAuthStore } from '../../store/useAuthStore'
-import { isValidMobile } from '../../lib/validators'
+import { isValidMobile, isValidPassword } from '../../lib/validators'
 import './AuthForms.css'
 
 export default function LoginForm({ onSwitchToSignup, prefill }) {
   const navigate = useNavigate()
   const showToast = useToast()
   const findUserByMobile = useAuthStore((state) => state.findUserByMobile)
+  const verifyUserPassword = useAuthStore((state) => state.verifyUserPassword)
   const [mobile, setMobile] = useState(prefill?.mobile ?? '')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
@@ -21,7 +24,7 @@ export default function LoginForm({ onSwitchToSignup, prefill }) {
   const matchedUser = isComplete ? findUserByMobile(mobile) : null
   const isUnregistered = isComplete && !matchedUser
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
     if (!isValidMobile(mobile)) {
       setError('Enter a valid 10-digit mobile number.')
@@ -38,7 +41,19 @@ export default function LoginForm({ onSwitchToSignup, prefill }) {
       return
     }
 
+    if (!isValidPassword(password)) {
+      setError('Enter your password (min 6 characters).')
+      return
+    }
+
     setSubmitting(true)
+    const isCorrect = await verifyUserPassword(user, password)
+    if (!isCorrect) {
+      setSubmitting(false)
+      setError('Incorrect password. Please try again.')
+      return
+    }
+
     navigate('/verify-otp', { state: { mode: 'login', mobile, userName: user.name } })
   }
 
@@ -59,12 +74,25 @@ export default function LoginForm({ onSwitchToSignup, prefill }) {
         />
 
         {matchedUser && !error && (
-          <div className="auth-form__status-banner auth-form__status-banner--success">
-            <span>✓</span>
-            <p>
-              Account identified: <strong>{matchedUser.name}</strong>
-            </p>
-          </div>
+          <>
+            <div className="auth-form__status-banner auth-form__status-banner--success">
+              <span>✓</span>
+              <p>
+                Account identified: <strong>{matchedUser.name}</strong>
+              </p>
+            </div>
+            <TextField
+              id="login-password"
+              type="password"
+              label="Password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(event) => {
+                setPassword(event.target.value)
+                setError('')
+              }}
+            />
+          </>
         )}
 
         {isUnregistered && !error && (

@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { transition, BOOKING_STATUS } from './bookingStateMachine'
+import { createEncryptedStorage } from '../lib/crypto'
 
 /**
  * Booking shape:
@@ -60,6 +61,7 @@ export const useBookingStore = create(
     }),
     {
       name: 'aathi-yoga-bookings',
+      storage: createEncryptedStorage('aathi-yoga-bookings'),
       partialize: (state) => ({ bookings: state.bookings }),
     },
   ),

@@ -6,7 +6,7 @@ import PhoneField from '../../components/ui/PhoneField'
 import TextField from '../../components/ui/TextField'
 import BackButton from '../../components/ui/BackButton'
 import { useAuthStore } from '../../store/useAuthStore'
-import { isValidEmail, isValidMobile, isValidName } from '../../lib/validators'
+import { isValidEmail, isValidMobile, isValidName, isValidPassword } from '../../lib/validators'
 import './AuthForms.css'
 
 export default function SignupForm({ onSwitchToLogin, prefill }) {
@@ -17,6 +17,7 @@ export default function SignupForm({ onSwitchToLogin, prefill }) {
   const [name, setName] = useState(prefill?.name ?? '')
   const [mobile, setMobile] = useState(prefill?.mobile ?? '')
   const [email, setEmail] = useState(prefill?.email ?? '')
+  const [password, setPassword] = useState('')
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
 
@@ -30,6 +31,7 @@ export default function SignupForm({ onSwitchToLogin, prefill }) {
     if (!isValidName(name)) nextErrors.name = 'Enter your full name.'
     if (!isValidMobile(mobile)) nextErrors.mobile = 'Enter a valid 10-digit mobile number.'
     if (!isValidEmail(email)) nextErrors.email = 'Enter a valid email address.'
+    if (!isValidPassword(password)) nextErrors.password = 'Password must be at least 6 characters.'
     
     // Check uniqueness against internal JSON database and store
     if (!nextErrors.mobile && findUserByMobile(mobile)) {
@@ -45,7 +47,7 @@ export default function SignupForm({ onSwitchToLogin, prefill }) {
     }
 
     setSubmitting(true)
-    navigate('/verify-otp', { state: { mode: 'signup', mobile, name: name.trim(), email: email.trim() } })
+    navigate('/verify-otp', { state: { mode: 'signup', mobile, name: name.trim(), email: email.trim(), password } })
   }
 
   return (
@@ -115,6 +117,22 @@ export default function SignupForm({ onSwitchToLogin, prefill }) {
           onChange={(event) => {
             setEmail(event.target.value)
             setErrors((prev) => ({ ...prev, email: undefined }))
+          }}
+        />
+        <TextField
+          id="signup-password"
+          type="password"
+          label={
+            <>
+              Password<span aria-hidden="true"> *</span>
+            </>
+          }
+          placeholder="Min 6 characters"
+          value={password}
+          error={errors.password}
+          onChange={(event) => {
+            setPassword(event.target.value)
+            setErrors((prev) => ({ ...prev, password: undefined }))
           }}
         />
       </div>

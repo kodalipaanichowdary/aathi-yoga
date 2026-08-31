@@ -267,6 +267,75 @@ aathi-yoga/
 
 ---
 
+## 🔐 Security & Data Protection
+
+Aathi Yoga is designed with a clear separation between public static application data and user-specific sensitive state.
+
+### Data Exposure
+- **No Production User Data in source control:** No real customer or personal user information is committed to the public repository. The development datastore [`src/data/users.json`](src/data/users.json) contains an empty array `[]` by default.
+- **Static Public Data:** Public application data (yoga courses, coaches, products, wellness content, diet plans) is stored as static application data because this information is intentionally public.
+
+### Client-Side Security (Stage 1 Architecture)
+To protect data at rest on client machines, the application implements a database-free cryptography architecture using standard browser-native Web Crypto APIs:
+
+```
+                      AATHI YOGA (Stage 1)
+                               │
+                               ▼
+                        React / Zustand
+                               │
+                    ┌──────────┴──────────┐
+                    │                     │
+                Public Data           User State
+                    │                     │
+                JSON / JS              Encrypt
+                                          │
+                                    AES-GCM-256
+                                          │
+                                          ▼
+                                     localStorage
+                                          │
+                               {"__enc":true,...}
+```
+
+- **State Encryption at Rest:** Sensitive client-side Zustand stores (`useAuthStore`, `useBookingStore`, `useCartStore`) are encrypted prior to persistence in `localStorage` using **AES-GCM (256-bit)** with unique random 12-byte initialization vectors (IVs) per write.
+- **PBKDF2 Password Hashing:** User passwords are never stored in plaintext or reversibly encrypted forms. Instead, registration uses browser-native **PBKDF2-SHA256 with 600,000 iterations** (exceeding OWASP guidelines) and a random 16-byte salt per user to compute and serialize hashes as `pbkdf2:600000:<salt>:<hash>`.
+- **Dynamic Device Keys:** Encryption keys are derived dynamically at runtime using `crypto.subtle` from a random device seed/salt stored in local browser storage. No static shared key or cryptographic secret is hardcoded in the Javascript bundle.
+- **Graceful Migration:** Legacy plaintext local storage state is parsed, validated, encrypted, and upgraded on first load, with the old plaintext storage keys deleted immediately.
+
+> [!WARNING]
+> **Stage 1 Security Boundary Disclaimer:**
+> Stage 1 secures client-side persisted state against casual inspection of browser storage and reduces exposure of plaintext data at rest. It **does not** provide a trusted authentication or authorization boundary, nor does it protect against an attacker who can fully control the browser/application runtime or who has physical access to a logged-in session.
+
+---
+
+### Production Evolution Roadmap (Stage 1 vs. Stage 2)
+For real-world deployment, user authentication, session state, and sensitive operations must evolve to a server-side model:
+
+| Security Vector | Stage 1 (Current Prototype) | Stage 2 (Planned Production) |
+| :--- | :--- | :--- |
+| **Auth Boundary** | Client-side validation & simulated OTP | Server-side validation via secure, HttpOnly cookies |
+| **User Data Storage** | Encrypted `localStorage` (AES-GCM) | Relational SQL database (e.g. PostgreSQL) |
+| **Cryptography** | Client-derived dynamic device obfuscation keys | Server-held secret keys & KMS key rotation |
+| **Passwords** | Browser-derived PBKDF2 hashes | Backend-hashed credentials (e.g. Argon2id / bcrypt) |
+| **Business Logic** | Executed entirely on client | Executed and authorized on secure backend API |
+
+```
+    Stage 1 (Prototype)                    Stage 2 (Production)
+┌─────────────────────────┐            ┌─────────────────────────┐
+│         Client          │            │         Client          │
+│            │            │            │            │            │
+│      Zustand Store      │            │        Vite React       │
+│            │            │            │            │ HTTPS      │
+│      Encrypted Local    │            │            ▼            │
+│          Storage        │            │       REST API Backend  │
+│                         │            │            │            │
+│                         │            │      PostgreSQL DB      │
+└─────────────────────────┘            └─────────────────────────┘
+```
+
+---
+
 ## 🧪 Testing & Quality Assurance
 
 * **Run Linter:**

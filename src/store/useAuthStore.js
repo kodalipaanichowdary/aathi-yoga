@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { INITIAL_USERS, normalizeMobile, normalizeEmail } from '../data/users'
+import { createEncryptedStorage, hashPassword, verifyPassword } from '../lib/crypto'
 
 // Automatically purge legacy test session caches
 try {
@@ -62,9 +63,14 @@ export const useAuthStore = create(
       /**
        * Registers a new user into the internal database with unique validation.
        * @param {{ name: string, mobile: string, email: string, role?: string }} param0
-       * @returns {object}
+       * @param {string} password
+       * @returns {Promise<object>}
        */
-      registerUser({ name, mobile, email, role = 'member' }) {
+      async registerUser({ name, mobile, email, role = 'member' }, password) {
+        if (!password) {
+          throw new Error('Password is required for registration.')
+        }
+
         const cleanMobile = normalizeMobile(mobile)
         const cleanEmail = normalizeEmail(email)
         const trimmedName = (name ?? '').trim()
@@ -79,6 +85,8 @@ export const useAuthStore = create(
           throw new Error(`Email address ${cleanEmail} is already registered.`)
         }
 
+        const passwordHash = await hashPassword(password)
+
         const newUser = {
           id: `usr-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
           name: trimmedName,
@@ -86,6 +94,7 @@ export const useAuthStore = create(
           email: cleanEmail,
           createdAt: new Date().toISOString(),
           role,
+          passwordHash,
         }
 
         set((state) => ({
@@ -93,6 +102,19 @@ export const useAuthStore = create(
         }))
 
         return newUser
+      },
+
+      /**
+       * Verifies a password against the user's stored hash.
+       * Handles legacy demo users (without a password hash) explicitly as legacy.
+       */
+      async verifyUserPassword(user, password) {
+        if (!user) return false
+        if (!user.passwordHash) {
+          console.warn(`User ${user.name} is a legacy account without a password.`)
+          return true
+        }
+        return verifyPassword(password, user.passwordHash)
       },
 
       /**
@@ -131,6 +153,7 @@ export const useAuthStore = create(
     }),
     {
       name: 'aathi-yoga-auth-v3',
+      storage: createEncryptedStorage('aathi-yoga-auth-v3'),
       version: 3,
       merge: (persistedState, currentState) => {
         const persistedUsers = Array.isArray(persistedState?.users) ? persistedState.users : []
@@ -162,4 +185,8 @@ export const useAuthStore = create(
     },
   ),
 )
+
+if (typeof window !== 'undefined') {
+  window.useAuthStore = useAuthStore
+}
 

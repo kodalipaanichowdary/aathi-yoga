@@ -16,3 +16,7 @@ export function isValidName(value) {
 export function formatMobile(value) {
   return `+91 ${value}`
 }
+
+export function isValidPassword(value) {
+  return typeof value === 'string' && value.trim().length >= 6
+}
