@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useModeStore } from '../../store/useModeStore'
-import { DURATION, EASE } from '../../lib/motion'
+import { EASE } from '../../lib/motion'
 import YogaHome from './YogaHome'
 import LifeHome from './LifeHome'
 

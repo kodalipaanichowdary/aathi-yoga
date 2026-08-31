@@ -1,3 +1,4 @@
+/* global Buffer */
 import { createJSONStorage } from 'zustand/middleware'
 
 /**
@@ -39,7 +40,7 @@ export async function getDeviceKey() {
   if (cachedDeviceKey) return cachedDeviceKey
 
   const isBrowser = typeof window !== 'undefined' && typeof window.localStorage !== 'undefined'
-  let saltStr = ''
+  let saltStr
   
   if (isBrowser) {
     try {
@@ -240,7 +241,7 @@ export async function verifyPassword(password, serializedHash) {
 /**
  * Creates custom encrypted Zustand PersistStorage adapter.
  */
-export function createEncryptedStorage(keyName) {
+export function createEncryptedStorage() {
   const customStorage = {
     async getItem(name) {
       if (typeof window === 'undefined' || !window.localStorage) {

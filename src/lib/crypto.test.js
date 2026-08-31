@@ -4,8 +4,7 @@ import {
   decryptData,
   hashPassword,
   verifyPassword,
-  createEncryptedStorage,
-  getDeviceKey
+  createEncryptedStorage
 } from './crypto'
 
 // Setup global mock for localStorage if not present (Vitest JSDOM environment has it)
@@ -21,10 +20,10 @@ const mockLocalStorage = (() => {
 })()
 
 if (typeof window === 'undefined') {
-  global.window = {}
+  globalThis.window = {}
 }
-if (!global.localStorage) {
-  global.localStorage = mockLocalStorage
+if (!globalThis.localStorage) {
+  globalThis.localStorage = mockLocalStorage
 }
 
 describe('Crypto Utility Layer', () => {
